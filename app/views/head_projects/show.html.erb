@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @head_project %>
+
+<div>
+  <%= link_to "Edit this head project", edit_head_project_path(@head_project) %> |
+  <%= link_to "Back to head projects", head_projects_path %>
+
+  <%= button_to "Destroy this head project", @head_project, method: :delete %>
+</div>
