@@ -24,4 +24,14 @@
     <%= head.notes %>
   </p>
 
+  <p>
+    <strong>Projects:</strong>
+      <% Project.all.each do |project| %>
+        <div>
+          <%= check_box_tag :projects, project.id, head.projects.include?(project), :name => 'head[projects][]', id: "project_#{project.id}", disabled: true %>
+          <%= label_tag :projects, project.name, for: "project_#{project.id}" %>
+        </div>
+      <% end %>
+  </p>
+
 </div>

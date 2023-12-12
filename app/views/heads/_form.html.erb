@@ -36,7 +36,12 @@
     <%= form.text_area :notes %>
   </div>
 
-  <%= form.collection_check_boxes :projects, Project.all, :id, :name, { hide_label: true } %>
+  <% Project.all.each do |project| %>
+    <div>
+      <%= check_box_tag :projects, project.id, head.projects.include?(project), :name => 'head[projects][]', id: "project_#{project.id}" %>
+      <%= label_tag :projects, project.name , for: "project_#{project.id}" %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>

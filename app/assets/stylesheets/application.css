@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+input[type=checkbox][disabled],
+input[type=checkbox][disabled] + label {
+    display: none;
+}
+
+/*
+input[type=checkbox][disabled]:checked,
+input[type=checkbox][disabled]:checked + label {
+    display: inline;
+    outline: 2px solid green;
+}
+*/
+
+input[type=checkbox][disabled]:checked,
+input[type=checkbox][disabled]:checked + label {
+    display: inline;
+}

@@ -21,7 +21,8 @@ class HeadsController < ApplicationController
 
   # POST /heads or /heads.json
   def create
-    @head = Head.new(head_params)
+    @head = Head.new(head_params.except(:projects))
+    @head.projects << Project.where(id: head_params[:projects].compact_blank)
 
     respond_to do |format|
       if @head.save
@@ -36,8 +37,10 @@ class HeadsController < ApplicationController
 
   # PATCH/PUT /heads/1 or /heads/1.json
   def update
+    @head.projects = Project.where(id: head_params[:projects].compact_blank)
+    
     respond_to do |format|
-      if @head.update(head_params)
+      if @head.update(head_params.except(:projects))
         format.html { redirect_to head_url(@head), notice: "Head was successfully updated." }
         format.json { render :show, status: :ok, location: @head }
       else
@@ -65,6 +68,6 @@ class HeadsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def head_params
-      params.require(:head).permit(:name, :surname, :position, :techlead, :notes)
+      params.require(:head).permit(:name, :surname, :position, :techlead, :notes, projects: [])
     end
 end
