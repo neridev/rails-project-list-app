@@ -26,6 +26,13 @@
     <%= form.text_area :techstack %>
   </div>
 
+  <% Head.all.each do |head| %>
+    <div>
+      <%= check_box_tag :heads, head.id, project.heads.include?(head), :name => 'project[heads][]', id: "head_#{head.id}" %>
+      <%= label_tag :heads, head.name , for: "head_#{head.id}" %>
+    </div>
+  <% end %>
+
   <div>
     <%= form.submit %>
   </div>

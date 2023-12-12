@@ -21,7 +21,8 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params.except(:heads))
+    @project.heads << Head.where(id: project_params[:heads].compact_blank)
 
     respond_to do |format|
       if @project.save
@@ -36,8 +37,10 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
+    @project.heads = Head.where(id: project_params[:heads]&.compact_blank)
+
     respond_to do |format|
-      if @project.update(project_params)
+      if @project.update(project_params.except(:heads))
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -65,6 +68,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:name, :details, :techstack)
+      params.require(:project).permit(:name, :details, :techstack, heads: [])
     end
 end

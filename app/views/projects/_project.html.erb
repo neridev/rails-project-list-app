@@ -14,4 +14,15 @@
     <%= project.techstack %>
   </p>
 
+  <p>
+    <strong>Heads:</strong>
+      <% Head.all.each do |head| %>
+        <div class="head_item">
+          <%= check_box_tag :heads, head.id, project.heads.include?(head), :name => 'project[heads][]', id: "head_#{head.id}", disabled: true %>
+          <%= label_tag :heads, head.name, for: "head_#{head.id}" %> |
+          <%= link_to 'Detail hlavy', head_path(head) %>
+        </div>
+      <% end %>
+  </p>
+
 </div>
