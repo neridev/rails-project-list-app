@@ -1,6 +1,42 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Head projects</h1>
+<h1>Heads & Projects</h1>
+
+<div id="heads">
+  <% @heads.each do |head| %>
+    <p>
+      <strong>Name:</strong>
+      <%= head.name %>
+    </p>
+
+    <p>
+      <strong>Surname:</strong>
+      <%= head.surname %>
+    </p>
+
+    <p>
+      <strong>Position:</strong>
+      <%= head.position %>
+    </p>
+
+    <p>
+      <%= link_to "Show this head", head %>
+    </p>
+  <% end %>
+</div>
+
+<div id="projects">
+  <% @projects.each do |project| %>
+    <p>
+      <strong>Name:</strong>
+      <%= project.name %>
+    </p>
+
+    <p>
+      <%= link_to "Show this project", project %>
+    </p>
+  <% end %>
+</div>
 
 <div id="head_projects">
   <% @head_projects.each do |head_project| %>

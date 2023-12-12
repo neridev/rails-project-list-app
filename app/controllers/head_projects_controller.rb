@@ -4,6 +4,9 @@ class HeadProjectsController < ApplicationController
   # GET /head_projects or /head_projects.json
   def index
     @head_projects = HeadProject.all
+
+    @heads = Head.all
+    @projects = Project.all
   end
 
   # GET /head_projects/1 or /head_projects/1.json
