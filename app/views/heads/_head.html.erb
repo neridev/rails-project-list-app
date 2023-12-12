@@ -27,9 +27,10 @@
   <p>
     <strong>Projects:</strong>
       <% Project.all.each do |project| %>
-        <div>
+        <div class="project_item">
           <%= check_box_tag :projects, project.id, head.projects.include?(project), :name => 'head[projects][]', id: "project_#{project.id}", disabled: true %>
-          <%= label_tag :projects, project.name, for: "project_#{project.id}" %>
+          <%= label_tag :projects, project.name, for: "project_#{project.id}" %> |
+          <%= link_to 'Detail projektu', project_path(project) %>
         </div>
       <% end %>
   </p>

@@ -16,18 +16,21 @@
 
 input[type=checkbox][disabled],
 input[type=checkbox][disabled] + label {
-    display: none;
+    outline: 2px solid red;
+}
+
+input[type=checkbox][disabled]:checked,
+input[type=checkbox][disabled]:checked + label {
+    outline: 2px solid greenyellow;
 }
 
 /*
 input[type=checkbox][disabled]:checked,
 input[type=checkbox][disabled]:checked + label {
     display: inline;
-    outline: 2px solid green;
 }
 */
 
-input[type=checkbox][disabled]:checked,
-input[type=checkbox][disabled]:checked + label {
-    display: inline;
+.project_item {
+    margin-bottom: 5px;
 }

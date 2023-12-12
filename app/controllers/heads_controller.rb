@@ -37,7 +37,7 @@ class HeadsController < ApplicationController
 
   # PATCH/PUT /heads/1 or /heads/1.json
   def update
-    @head.projects = Project.where(id: head_params[:projects].compact_blank)
+    @head.projects = Project.where(id: head_params[:projects]&.compact_blank)
     
     respond_to do |format|
       if @head.update(head_params.except(:projects))
