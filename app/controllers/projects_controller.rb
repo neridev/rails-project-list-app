@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   # POST /projects or /projects.json
   def create
     @project = Project.new(project_params.except(:heads))
-    @project.heads << Head.where(id: project_params[:heads].compact_blank)
+    @project.heads << Head.where(id: project_params[:heads]&.compact_blank)
 
     respond_to do |format|
       if @project.save
